@@ -153,7 +153,7 @@ as SSPxBUF is written to.
 the slave device and writes its value into the
 ACKSTAT bit of the SSPxCON2 register.
 
- * if(SSP1CON2bits.ACKSTAT==1)stop 
+ * if(SSP1CON2bits.ACKSTAT==1) then Stop
  
 7. The MSSPx module generates an interrupt at
 the end of the ninth clock cycle by setting the
@@ -231,9 +231,9 @@ void Wire_readNBytes(uint8_t address, uint8_t* rx_data, uint8_t data_len){
         SSP1STATbits.BF = 0;
         
         if(i < (data_len - 1))
-            Wire_ACK();
+            Wire_ACK();	 //request more data
         else
-            Wire_NACK();
+            Wire_NACK(); // Stop receive data
     }
     
 }
